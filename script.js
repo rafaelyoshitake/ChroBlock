@@ -157,14 +157,13 @@ function drawNext(){
     }
 }
 
-// --- FUNÇÃO endGame ATUALIZADA ---
 function endGame() {
     gameOver = true;
     clearTimeout(gameLoopTimeout);
     clearInterval(timerInterval); 
     
-    audio.pause(); // PAUSA A MÚSICA
-    audio.currentTime = 0; // REBOBINA A MÚSICA
+    audio.pause(); 
+    audio.currentTime = 0; 
     
     BlocoSave = null;
     drawTela();
@@ -177,7 +176,6 @@ function endGame() {
     document.getElementById('finalTime').textContent = formatTime(secondsPlayed);
     document.getElementById('fundo').style.filter = 'blur(5px)'; 
 }
-// --- FIM DA FUNÇÃO endGame ATUALIZADA ---
 
 function checkHighScore(currentScore) {
     if (currentScore === 0) return; 
@@ -203,7 +201,6 @@ function drawHighScores() {
     }
 }
 
-// --- FUNÇÃO reiniciarJogo ATUALIZADA ---
 function reiniciarJogo(){
     clearTimeout(gameLoopTimeout);
     clearInterval(timerInterval); 
@@ -232,7 +229,6 @@ function reiniciarJogo(){
     
     startTimer(); 
 }
-// --- FIM DA FUNÇÃO reiniciarJogo ATUALIZADA ---
 
 function LinhasCompletas(){
     for (let y = LIN - 1; y >= 0; y--){
@@ -291,7 +287,7 @@ function initGame() {
     startTimer(); 
 }
 
-// --- LISTENERS DA TELA DE INÍCIO E TUTORIAL ---
+
 
 document.getElementById('startGameButton').onclick = function() {
     const nameError = document.getElementById('nameError'); 
@@ -344,7 +340,7 @@ tutorialDialog.addEventListener('cancel', (e) => {
     e.preventDefault();
 });
 
-// --- LISTENERS DO JOGO (TECLADO) ---
+
 document.addEventListener('keydown', function(e){
     if (gameOver || isPaused) return; 
     if (e.key === 'ArrowLeft' && Colisao(-1, 0, BlocoSave)) posX--;
@@ -358,10 +354,6 @@ document.addEventListener('keydown', function(e){
 drawHighScores();
 drawTimer(); 
 
-/* ==============================================
-  👇 NOVAS LÓGICAS DE PAUSA, ÁUDIO E CONFIGS 👇
-  ==============================================
-*/
 
 // --- PEGANDO OS ELEMENTOS ---
 const pauseIcon = document.getElementById('pauseIcon');
@@ -386,10 +378,8 @@ const closeSettingsButton = document.getElementById('closeSettingsButton');
 const volumeSlider = document.getElementById('volumeSlider');
 const muteButton = document.getElementById('muteButton');
 
-// --- INICIALIZAÇÃO DO ÁUDIO ---
 audio.volume = volumeSlider.value / 100; // Define o volume inicial (0.5)
 
-// --- FUNÇÕES DE CONTROLE DE ÁUDIO ---
 function handleVolumeChange(e) {
     audio.volume = e.target.value / 100;
     if (audio.volume > 0) {
@@ -471,13 +461,12 @@ closeDevModalButton.addEventListener('click', (e) => {
     pauseScreen.classList.remove('hidden'); 
 });
 
-// Botão de Game Over
+
 restartGameOverButton.addEventListener('click', (e) => {
     e.preventDefault();
     reiniciarJogo();
 });
 
-// --- NOVOS LISTENERS DE CONFIGURAÇÕES ---
 settingsButton.addEventListener('click', (e) => {
     e.preventDefault();
     pauseScreen.classList.add('hidden');    // Esconde o menu de pausa
@@ -493,5 +482,4 @@ closeSettingsButton.addEventListener('click', (e) => {
 volumeSlider.addEventListener('input', handleVolumeChange);
 muteButton.addEventListener('click', toggleMute);
 
-// Atualiza o texto do botão de mudo no início
 updateMuteButton();
