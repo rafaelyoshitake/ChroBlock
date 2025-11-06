@@ -142,21 +142,26 @@ canvas {
     cursor: pointer;
 }
 
-/* ESTILOS DE PAUSA (DIVs) */
 #pauseIcon {
     position: fixed;
     top: 20px;
     right: 30px;
     width: 50px;
     height: 50px;
-    background-color: rgba(40, 40, 40, 0.8);
+    background-color: #222; /* Cor de fundo igual aos modais */
     color: #fff;
     font-size: 24px;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 3px solid #fff;
+    
+    /* Bordas coloridas temáticas */
+    border-top: 3px solid #00c3fa;
+    border-right: 3px solid #fae100;
+    border-bottom: 3px solid #ff3b3b;
+    border-left: 3px solid #30ff30;
+
     border-radius: 8px;
     cursor: pointer;
     z-index: 5;
@@ -165,9 +170,10 @@ canvas {
     user-select: none;
 }
 
+
 #pauseIcon:hover {
-    background-color: #fff;
-    color: #000;
+    color: #00c3fa; /* Cor azul no hover */
+    box-shadow: 0 0 15px #00c3fa; /* Brilho azul no hover */
     transform: scale(1.1);
 }
 
