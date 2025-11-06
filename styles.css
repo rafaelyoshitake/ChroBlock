@@ -318,13 +318,9 @@ canvas {
     color: #fae100;
 }
 
-
-/* =====================================
-  👇 NOVOS ESTILOS PARA CONFIGURAÇÕES 👇
-  =====================================
-*/
 #settingsList {
-    width: 300px; /* Define uma largura para o conteúdo */
+    width: 300px; 
+    margin: 0 auto;
 }
 
 #settingsList li {
