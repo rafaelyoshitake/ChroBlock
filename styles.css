@@ -45,6 +45,9 @@ body {
 
 .coluna3 {
     height: 400px;
+    display: flex;
+    flex-direction: column; /* Empilha o <h3> em cima do <canvas> */
+    align-items: center;
 }
 
 canvas {
