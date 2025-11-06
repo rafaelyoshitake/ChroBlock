@@ -35,16 +35,39 @@ let currentPlayerName = "Player";
         "yellow", "yellow", "red", "red"
     ];
     const Chroblocks = [
-        [],
-        [[1,1,0], [1,0,0], [1,1,0]], // L-block (modificado para ser 3x3 para rotação mais fácil)
-        [[0,2,0], [2,2,2], [0,2,0]], // T-block
-        [[3,0,0], [3,0,0], [3,3,3]], // L-block invertido
-        [[4,4,4], [0,4,0], [0,4,0]], // T-block invertido
-        [[5,5,0], [5,5,0], [5,0,0]], // Square-block (não rotaciona visualmente)
-        [[6,6,0], [0,6,6], [0,6,0]], // Z-block
-        [[7,7,0], [0,7,0], [0,7,7]], // S-block
-        [[8,0,0], [8,8,0], [8,8,8]]  // I-block (modificado para ser 3x3)
-    ];
+    [],[
+    [1,0,0],
+    [0,0,0],
+    [0,0,0]],
+    [
+    [0,2,0],
+    [0,2,0],
+    [0,2,0]],
+    [
+    [3,0,0],
+    [3,0,0],
+    [3,3,0]
+    ],
+    [[4,4,4]
+    ,[0,4,0], 
+     [0,4,0]
+    ],
+    [[8,8,0],
+     [8,8,0],
+     [8,0,0]],
+    [
+      [6,6,0],
+      [0,6,6],
+      [0,6,0]],
+    [
+    [7,7,0],
+    [0,7,0],
+    [0,7,7]
+    ],
+    [[0,5,5],
+     [0,5,0],
+     [5,5,0]]
+];
     const LIN = 20;
     const COL = 10;
     let jogo = Array.from({ length: LIN }, () => Array(COL).fill(0));
@@ -73,7 +96,6 @@ let currentPlayerName = "Player";
         return `rgb(${rgbColor.r},${rgbColor.g},${rgbColor.b})`;
     }
 
-    // (FUNÇÃO NOVA) Toca sons usando Tone.js
     function playSound(type) {
         if (!audioContextStarted || !synth) return; // Não toca se o áudio não foi iniciado
 
@@ -89,7 +111,6 @@ let currentPlayerName = "Player";
         }
     }
 
-    // Função para atualizar as bordas com as cores RGB
     function updateRGBBorders(color) {
         if (!canvasJogoBorder) { // Garante que os elementos foram carregados
             canvasJogoBorder = document.getElementById('CanvasJogo');
@@ -101,7 +122,7 @@ let currentPlayerName = "Player";
         }
 
         let finalColor = color;
-        // (NOVO) Lógica de piscar para o aviso
+
         if (isWarningActive) {
             const time = Date.now();
             if (time % 400 < 200) { // Pisca a cada 200ms
@@ -123,7 +144,6 @@ let currentPlayerName = "Player";
             }
         });
 
-        // (NOVO) Atualiza a cor do título
         if (tituloElement) {
             tituloElement.style.color = finalColor;
         }
@@ -257,7 +277,7 @@ let currentPlayerName = "Player";
         spawnBloco();
     }
     
-    // LOOP PRINCIPAL DO JOGO
+    
     function gameLoop() {
         clearTimeout(gameLoopTimeout);
         if (gameOver || isPaused) return; 
@@ -266,32 +286,30 @@ let currentPlayerName = "Player";
         if (Colisao(0, 1, BlocoSave)) {
             posY++;
         } else {
-            // Se não puder mover, fixa o bloco
+           
             fixaBloco();
-            if (gameOver) return; // Verifica se o jogo terminou após fixar o bloco
+            if (gameOver) return; 
         }
         
-        drawTela(); // Redesenha a tela após o movimento
+        drawTela(); 
         drawScore();
         
-        // Define o próximo loop com a velocidade atual do jogo
+       
         gameLoopTimeout = setTimeout(gameLoop, currentFallSpeed);
     }
 
-    // ROTAÇÃO DE BLOCOS (CORRIGIDO PARA 4 LADOS)
+  
     function rotateBlock(){
         const newBlock = [];
-        const size = BlocoSave.length; // Assumindo blocos quadrados (3x3, 4x4, etc.)
+        const size = BlocoSave.length; 
         for (let i = 0; i < size; i++){ 
             newBlock[i] = [];
             for (let j = 0; j < size; j++){
-                // Lógica de rotação 90 graus no sentido horário
                 newBlock[i][j] = BlocoSave[size - 1 - j][i];
             }
         }
 
-        // --- Wall Kick (Deslocamento da parede) ---
-        // Se a rotação original colidir, tenta deslocar a peça
+        
         const kicks = [[0,0], [-1,0], [1,0], [0,-1], [0,1]]; // Tentativas de deslocamento (x, y)
         for (let k = 0; k < kicks.length; k++) {
             const kickX = kicks[k][0];
@@ -476,9 +494,7 @@ let currentPlayerName = "Player";
             }
         }
 
-        // --- ATIVAÇÃO DO EASTER EGG ---
-        // ATENÇÃO: Mude o valor de "linhasLimpas" para 4 para a versão final!
-        if (linhasLimpas >= 1) { 
+        if (linhasLimpas >= 3) { 
             if (!isEasterEggActive) { // Ativa apenas se não estiver ativo
                 isEasterEggActive = true;
                 currentFallSpeed = EASTER_EGG_FALL_SPEED; // Acelera o jogo
