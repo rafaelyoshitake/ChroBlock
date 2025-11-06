@@ -1,371 +1,378 @@
-/* --- ESTILOS GLOBAIS --- */
 * {
-    margin: 0px;
-    padding: 0px;
-}
+        margin: 0px;
+        padding: 0px;
+    }
 
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    color: white; 
-    background-color: #1a1a1a;
-}
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        color: white; 
+        background-color: #1a1a1a;
+    }
 
-/* --- ESTILOS DO JOGO --- */
-.container {
-    display: flex;
-    height: 530px;
-    width: 700px;
-    align-items: center;
-    justify-content: center;
-    background-size: cover;
-    transition: filter 0.3s ease-in-out;
-}
+    /* --- ESTILOS DO JOGO --- */
+    .container {
+        display: flex;
+        height: 530px;
+        width: 700px;
+        align-items: center;
+        justify-content: center;
+        background-size: cover;
+        transition: filter 0.3s ease-in-out;
+    }
 
-.coluna1 {
-    height: 400px;
-    width: 150px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    .coluna1 {
+        height: 400px;
+        width: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-.coluna2 {
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+    .coluna2 {
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 
-.coluna3 {
-    height: 400px;
-    display: flex;
-    flex-direction: column; /* Empilha o <h3> em cima do <canvas> */
-    align-items: center;
-}
+    .coluna3 {
+        height: 400px;
+        display: flex;
+        flex-direction: column; /* Empilha o <h3> em cima do <canvas> */
+        align-items: center;
+    }
 
-canvas {
-    background: rgb(0, 0, 0);
-}
+    canvas {
+        background: rgb(0, 0, 0);
+    }
 
-/* PADRÃO DE BORDAS DO JOGO */
-.coluna2 canvas {
-    border-top: 4px solid #00c3fa;    /* Azul */
-    border-right: 4px solid #fae100; /* Amarelo */
-    border-bottom: 4px solid #ff3b3b; /* Vermelho */
-    border-left: 4px solid #30ff30;   /* Verde */
-}
+    /* PADRÃO DE BORDAS DO JOGO */
+    .coluna2 canvas {
+        /* BORDAS PADRÃO */
+        border-top: 4px solid #00c3fa;    /* Azul */
+        border-right: 4px solid #fae100; /* Amarelo */
+        border-bottom: 4px solid #ff3b3b; /* Vermelho */
+        border-left: 4px solid #30ff30;   /* Verde */
+        transition: border-color 0.1s linear; /* Transição para as cores RGB */
+    }
 
-.coluna3 canvas {
-    border-top: 4px solid #00c3fa;
-    border-right: 4px solid #fae100;
-    border-bottom: 4px solid #ff3b3b;
-    border-left: 4px solid #30ff30;
-    border-radius: 10px;
-}
+    .coluna3 canvas {
+        /* BORDAS PADRÃO */
+        border-top: 4px solid #00c3fa;
+        border-right: 4px solid #fae100;
+        border-bottom: 4px solid #ff3b3b;
+        border-left: 4px solid #30ff30;
+        border-radius: 10px;
+        transition: border-color 0.1s linear; /* Transição para as cores RGB */
+    }
 
-.coluna1 canvas {
-    border-top: 4px solid #00c3fa;
-    border-right: 4px solid #fae100;
-    border-bottom: 4px solid #ff3b3b;
-    border-left: 4px solid #30ff30;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
+    .coluna1 canvas {
+        /* BORDAS PADRÃO */
+        border-top: 4px solid #00c3fa;
+        border-right: 4px solid #fae100;
+        border-bottom: 4px solid #ff3b3b;
+        border-left: 4px solid #30ff30;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        transition: border-color 0.1s linear; /* Transição para as cores RGB */
+    }
 
-#highScoresList {
-    color: white;
-    font-size: 14px;
-    text-align: left;
-    width: 100%;
-    background: rgb(0, 0, 0);
-    border-top: 4px solid #00c3fa;
-    border-right: 4px solid #fae100;
-    border-bottom: 4px solid #ff3b3b;
-    border-left: 4px solid #30ff30;
-    border-radius: 10px;
-    padding: 5px;
-    min-height: 180px;
-    box-sizing: border-box;
-}
+    #highScoresList {
+        color: white;
+        font-size: 14px;
+        text-align: left;
+        width: 100%;
+        background: rgb(0, 0, 0);
+        /* BORDAS PADRÃO */
+        border-top: 4px solid #00c3fa;
+        border-right: 4px solid #fae100;
+        border-bottom: 4px solid #ff3b3b;
+        border-left: 4px solid #30ff30;
+        border-radius: 10px;
+        padding: 5px;
+        min-height: 180px;
+        box-sizing: border-box;
+        transition: border-color 0.1s linear; /* Transição para as cores RGB */
+    }
 
-#highScoresList div {
-    padding: 2px 5px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+    #highScoresList div {
+        padding: 2px 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
-/* --- ESTILOS DOS MODAIS (POPUPS) --- */
+    /* --- ESTILOS DOS MODAIS (POPUPS) --- */
 
-/* TELA DE INÍCIO (NOME) */
-#startScreenOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-}
+    /* TELA DE INÍCIO (NOME) */
+    #startScreenOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+    }
 
-#startScreenModal {
-    background: #222;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    color: white;
-    border: 2px solid #fff;
-}
+    #startScreenModal {
+        background: #222;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        color: white;
+        border: 2px solid #fff;
+    }
 
-#startScreenModal h2 {
-    margin-bottom: 15px;
-}
+    #startScreenModal h2 {
+        margin-bottom: 15px;
+    }
 
-#playerNameInput {
-    font-size: 18px;
-    padding: 5px;
-    text-align: center;
-    width: 200px;
-    margin-bottom: 20px;
-}
+    #playerNameInput {
+        font-size: 18px;
+        padding: 5px;
+        text-align: center;
+        width: 200px;
+        margin-bottom: 20px;
+    }
 
-#startGameButton {
-    font-size: 18px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
+    #startGameButton {
+        font-size: 18px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
 
-#pauseIcon {
-    position: fixed;
-    top: 20px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background-color: #222; /* Cor de fundo igual aos modais */
-    color: #fff;
-    font-size: 24px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    /* Bordas coloridas temáticas */
-    border-top: 3px solid #00c3fa;
-    border-right: 3px solid #fae100;
-    border-bottom: 3px solid #ff3b3b;
-    border-left: 3px solid #30ff30;
+    #pauseIcon {
+        position: fixed;
+        top: 20px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: #222; /* Cor de fundo igual aos modais */
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        /* Bordas coloridas temáticas */
+        border-top: 3px solid #00c3fa;
+        border-right: 3px solid #fae100;
+        border-bottom: 3px solid #ff3b3b;
+        border-left: 3px solid #30ff30;
 
-    border-radius: 8px;
-    cursor: pointer;
-    z-index: 5;
-    transition: all 0.2s ease;
-    font-family: Arial, sans-serif;
-    user-select: none;
-}
+        border-radius: 8px;
+        cursor: pointer;
+        z-index: 5;
+        transition: all 0.2s ease;
+        font-family: Arial, sans-serif;
+        user-select: none;
+    }
 
 
-#pauseIcon:hover {
-    color: #00c3fa; /* Cor azul no hover */
-    box-shadow: 0 0 15px #00c3fa; /* Brilho azul no hover */
-    transform: scale(1.1);
-}
+    #pauseIcon:hover {
+        color: #00c3fa; /* Cor azul no hover */
+        box-shadow: 0 0 15px #00c3fa; /* Brilho azul no hover */
+        transform: scale(1.1);
+    }
 
-.pause-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    transition: opacity 0.3s ease-in-out;
-    font-family: 'Arial', sans-serif;
-}
+    .pause-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        transition: opacity 0.3s ease-in-out;
+        font-family: 'Arial', sans-serif;
+    }
 
-.pause-content {
-    background-color: #222;
-    padding: 40px 60px;
-    text-align: center;
-    border-radius: 10px;
-    /* Borda colorida */
-    border-top: 5px solid #00c3fa;    /* Azul */
-    border-right: 5px solid #fae100;   /* Amarelo */
-    border-bottom: 5px solid #ff3b3b;  /* Vermelho */
-    border-left: 5px solid #30ff30;    /* Verde */
-}
+    .pause-content {
+        background-color: #222;
+        padding: 40px 60px;
+        text-align: center;
+        border-radius: 10px;
+        /* Borda colorida */
+        border-top: 5px solid #00c3fa;    /* Azul */
+        border-right: 5px solid #fae100;   /* Amarelo */
+        border-bottom: 5px solid #ff3b3b;  /* Vermelho */
+        border-left: 5px solid #30ff30;    /* Verde */
+    }
 
-.pause-content h2 {
-    color: #00c3fa;
-    font-size: 3em;
-    margin-bottom: 30px;
-    font-family: 'Arial', sans-serif;
-}
+    .pause-content h2 {
+        color: #00c3fa;
+        font-size: 3em;
+        margin-bottom: 30px;
+        font-family: 'Arial', sans-serif;
+    }
 
-.pause-content ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 40px;
-}
+    .pause-content ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 40px;
+    }
 
-.pause-content li {
-    margin-bottom: 20px;
-}
+    .pause-content li {
+        margin-bottom: 20px;
+    }
 
-.pause-content a {
-    display: inline-block;
-    text-decoration: none;
-    color: #fff;
-    background-color: transparent;
-    padding: 15px 30px;
-    border: 2px solid #fff;
-    border-radius: 5px;
-    font-size: 1.2em;
-    transition: all 0.2s ease-in-out;
-    width: 200px;
-}
+    .pause-content a {
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        background-color: transparent;
+        padding: 15px 30px;
+        border: 2px solid #fff;
+        border-radius: 5px;
+        font-size: 1.2em;
+        transition: all 0.2s ease-in-out;
+        width: 200px;
+    }
 
-.pause-content a:hover {
-    background-color: transparent;
-    color: #00c3fa;
-    border-color: #00c3fa;
-    box-shadow: 0 0 15px #00c3fa;
-    transform: scale(1.05);
-}
+    .pause-content a:hover {
+        background-color: transparent;
+        color: #00c3fa;
+        border-color: #00c3fa;
+        box-shadow: 0 0 15px #00c3fa;
+        transform: scale(1.05);
+    }
 
-.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
+    .hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
 
-/* ESTILO PARA A LISTA DE CRÉDITOS */
-#devList {
-    text-align: left;
-    font-size: 1.1em;
-    color: #fff;
-}
-#devList li {
-    margin-bottom: 15px;
-}
+    /* ESTILO PARA A LISTA DE CRÉDITOS */
+    #devList {
+        text-align: left;
+        font-size: 1.1em;
+        color: #fff;
+    }
+    #devList li {
+        margin-bottom: 15px;
+    }
 
-#devList a {
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.2s ease;
-    
-    display: inline;
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    width: auto;
-    box-shadow: none;
-}
-#devList a:hover {
-    color: #00c3fa;
-    text-decoration: underline;
-    
-    border: none;
-    box-shadow: none;
-    transform: none;
-}
+    #devList a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.2s ease;
+        
+        display: inline;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        width: auto;
+        box-shadow: none;
+    }
+    #devList a:hover {
+        color: #00c3fa;
+        text-decoration: underline;
+        
+        border: none;
+        box-shadow: none;
+        transform: none;
+    }
 
-/* Esconde os elementos do jogo por padrão */
-#t, #fundo, #restart {
-    display: none;
-}
+    /* Esconde os elementos do jogo por padrão */
+    #t, #fundo, #restart {
+        display: none;
+    }
 
-/* --- ESTILOS DO POP-UP DE TUTORIAL (<dialog>) --- */
-#tutorialDialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.8);
-}
+    /* --- ESTILOS DO POP-UP DE TUTORIAL (<dialog>) --- */
+    #tutorialDialog::backdrop {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
 
-#tutorialDialog {
-    background: transparent;
-    border: none;
-    padding: 0;
-    max-width: 100%;
-    margin: auto; /* Garante a centralização */
-}
+    #tutorialDialog {
+        background: transparent;
+        border: none;
+        padding: 0;
+        max-width: 100%;
+        margin: auto; /* Garante a centralização */
+    }
 
-#tutorialList li {
-    margin-bottom: 15px;
-    padding: 0;
-    color: white;
-    text-align: left;
-}
+    #tutorialList li {
+        margin-bottom: 15px;
+        padding: 0;
+        color: white;
+        text-align: left;
+    }
 
-#tutorialList li strong {
-    color: #fae100; /* Destaque amarelo para as teclas */
-}
+    #tutorialList li strong {
+        color: #fae100; /* Destaque amarelo para as teclas */
+    }
 
-/* --- ESTILO PARA GAME OVER SCREEN --- */
-#gameOverScreen .pause-content p {
-    font-size: 1.8em;
-    color: #fff;
-    margin: 15px 0;
-}
-#gameOverScreen .pause-content p span {
-    color: #fae100;
-}
+    /* --- ESTILO PARA GAME OVER SCREEN --- */
+    #gameOverScreen .pause-content p {
+        font-size: 1.8em;
+        color: #fff;
+        margin: 15px 0;
+    }
+    #gameOverScreen .pause-content p span {
+        color: #fae100;
+    }
 
-#settingsList {
-    width: 300px; 
-    margin: 0 auto;
-}
+    #settingsList {
+        width: 300px; 
+        margin: 0 auto;
+    }
 
-#settingsList li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    #settingsList li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-#volumeLabel {
-    font-size: 1.2em;
-    color: #fff;
-    margin-bottom: 15px;
-}
+    #volumeLabel {
+        font-size: 1.2em;
+        color: #fff;
+        margin-bottom: 15px;
+    }
 
-/* Estilização básica do Slider */
-#volumeSlider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 10px;
-    background: #555;
-    border-radius: 5px;
-    outline: none;
-    cursor: pointer;
-}
+    /* Estilização básica do Slider */
+    #volumeSlider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 10px;
+        background: #555;
+        border-radius: 5px;
+        outline: none;
+        cursor: pointer;
+    }
 
-/* Estilização do "botão" do slider (thumb) */
-#volumeSlider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    background: #00c3fa; /* Azul */
-    border-radius: 50%;
-    cursor: pointer;
-}
+    /* Estilização do "botão" do slider (thumb) */
+    #volumeSlider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: #00c3fa; /* Azul */
+        border-radius: 50%;
+        cursor: pointer;
+    }
 
-#volumeSlider::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    background: #00c3fa; /* Azul */
-    border-radius: 50%;
-    cursor: pointer;
-    border: none; /* Remove borda padrão do Firefox */
-}
+    #volumeSlider::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: #00c3fa; /* Azul */
+        border-radius: 50%;
+        cursor: pointer;
+        border: none; /* Remove borda padrão do Firefox */
+    }
