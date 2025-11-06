@@ -1,35 +1,118 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> ChroBlock </title>
-    <link rel="stylesheet" href="styles.css" /> <!-- Referência o aquivo .css -->
-    <script defer src="script.js"></script> <!-- Referência o arquivo .js-->
-  </head>
-  
-  <body>
-    <h1 id="t"> CHROBLOCK </h1> <!-- nome do jogo -->
-      <div id="fundo" class="container"> <!-- organizar e agrupar as informações da página -->
-        <div class="coluna1"> <!-- área da inteface onde irá aparecer a pontuação -->
-         <h3>
-           SCORE
-         </h3> 
-         <canvas id="CanvasPontos" width="100" height="50"></canvas> <!-- onde aparecer a pontuação para o usuário-->
-          
-          
-        </div>
-        <div class="coluna2">
-          <canvas id="CanvasJogo" width="200" height="400"></canvas> <!-- área visual do jogo onde ira mostrar a pontuação -->
-        </div>
-        
-        <div class="coluna3">
-          <h3> NEXT </h3>
-          <canvas width="150" height="150"></canvas> <!-- onde o usuário tem uma pré visualização do próximo -->
-        </div>
-      </div>
+    <title>ChroBlock</title>
     
-  </body>
-</html>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <audio id="musicaFundo" loop src=""></audio>
 
-<button id="restart">Restart</button> <!-- onde o jogo reinicia e começa novamente -->
+    <div id="startScreenOverlay">
+        <div id="startScreenModal">
+            <h2>Bem-vindo ao ChroBlock!</h2>
+            <p>Digite seu nome:</p>
+            <input type="text" id="playerNameInput" maxlength="8" autofocus>
+            
+            <p id="nameError" style="color: #ff3b3b; display: none; margin-top: 10px; margin-bottom: -10px;">
+                Por favor, digite seu nome!
+            </p>
+            <br>
+            <button id="startGameButton">Start Game</button>
+        </div>
+    </div>
+
+    <dialog id="tutorialDialog">
+        <div class="pause-content">
+            <h2 style="color: #00c3fa;">COMO JOGAR</h2>
+            <ul id="tutorialList" style="text-align: left; margin: 30px; font-size: 1.1em;">
+                <li>Use as <strong>Setas (◀ ▶)</strong> para mover a peça.</li>
+                <li>Use a <strong>Seta (▲)</strong> para girar a peça.</li>
+                <li>Use a <strong>Seta (▼)</strong> para acelerar a queda.</li>
+                <li>Complete linhas para marcar pontos!</li>
+            </ul>
+            <a href="#" id="closeTutorialButton">ENTENDI</a>
+        </div>
+    </dialog>
+
+    <div id="pauseIcon" class="hidden">||</div>
+
+    <div id="pauseScreen" class="pause-screen hidden">
+        <div class="pause-content">
+            <h2>PAUSADO</h2>
+            <ul>
+                <li><a href="#" id="continueButton">CONTINUAR</a></li>
+                <li><a href="#" id="restartPauseButton">REINICIAR</a></li>
+                <li><a href="#" id="settingsButton">ÁUDIO</a></li> <li><a href="#" id="devButton">CRÉDITOS</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="devModal" class="pause-screen hidden">
+        <div class="pause-content">
+            <h2>CRÉDITOS</h2>
+            <ul id="devList">
+                <li><a href="https://github.com/izabella-almeida" target="_blank">Izabella de Almeida Ribeiro Correa Lima</a></li>
+                <li><a href="https://github.com/Kaiohnl" target="_blank">Kaio Henrique Neves Lima</a></li>
+                <li><a href="https://github.com/Dex14028" target="_blank">Marcos Dexter Ribeiro da Silva</a></li>
+                <li><a href="https://github.com/0001139405-alt" target="_blank">Maria Eduarda Moreira do Santos</a></li>
+                <li><a href="https://github.com/rafaelyoshitake" target="_blank">Rafael Yoshitake Nogueira</a></li>
+            </ul>
+            <a href="#" id="closeDevModalButton">VOLTAR</a>
+        </div>
+    </div>
+
+    <div id="settingsModal" class="pause-screen hidden">
+        <div class="pause-content">
+            <h2>CONFIGURAÇÕES</h2>
+            <ul id="settingsList">
+                <li>
+                    <label id="volumeLabel" for="volumeSlider">Volume</label>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="50">
+                </li>
+                <li>
+                    <a href="#" id="muteButton">MUTAR SOM (🔊)</a>
+                </li>
+            </ul>
+            <a href="#" id="closeSettingsButton">VOLTAR</a>
+        </div>
+    </div>
+
+    <div id="gameOverScreen" class="pause-screen hidden">
+        <div class="pause-content">
+            <h2>GAME OVER</h2>
+            <p>PONTUAÇÃO: <span id="finalScore">0</span></p>
+            <p>TEMPO: <span id="finalTime">00:00:00</span></p>
+            <a href="#" id="restartGameOverButton">REINICIAR</a>
+        </div>
+    </div>
+    
+    <h1 id="t">CHROBLOCK</h1>
+    <div id="fundo" class="container">
+        <div class="coluna1">
+            <h3>SCORE</h3>
+            <canvas id="CanvasPontos" width="150" height="50"></canvas> 
+            
+            <h3 style="margin-top: 10px;">TIME</h3>
+            <canvas id="timerCanvas" width="150" height="50"></canvas>
+
+            <h3 style="margin-top: 10px;">HIGH SCORES</h3>
+            <div id="highScoresList">
+                </div>
+        </div>
+
+        <div class="coluna2">
+            <canvas id="CanvasJogo" width="200" height="400"></canvas>
+        </div>
+        <div class="coluna3">
+            <h3>NEXT</h3>
+            <canvas width="150" height="150"></canvas>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
