@@ -330,25 +330,24 @@ let currentPlayerName = "Player";
     document.addEventListener('keydown', function(e){
         if (gameOver || isPaused) return; 
         
-        // Remove a chamada para drawTela() daqui, pois o gameLoop já cuida disso
-        // Isso evita o "salto" visual da peça.
-        if (e.key === 'ArrowLeft') {
+        // Converte para minúsculo para aceitar tanto 'w' quanto 'W'
+        const key = e.key.toLowerCase();
+        
+        if (e.key === 'ArrowLeft' || key === 'a') {
             if (Colisao(-1, 0, BlocoSave)) posX--;
         }
-        else if (e.key === 'ArrowRight') {
+        else if (e.key === 'ArrowRight' || key === 'd') {
             if (Colisao(1, 0, BlocoSave)) posX++;
         }
-        else if (e.key === 'ArrowDown') {
+        else if (e.key === 'ArrowDown' || key === 's') {
             // Acelera a queda, mas não a congela no chão
             if (Colisao(0, 1, BlocoSave)) {
                 posY++;
-                // Para queda rápida, você pode chamar gameLoop() imediatamente aqui
-                // para que a próxima atualização ocorra mais cedo.
                 clearTimeout(gameLoopTimeout);
                 gameLoopTimeout = setTimeout(gameLoop, 50); // Queda mais rápida
             }
         }
-        else if (e.key === 'ArrowUp') {
+        else if (e.key === 'ArrowUp' || key === 'w') {
             rotateBlock();
         }
         
