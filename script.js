@@ -57,12 +57,12 @@ let currentPlayerName = "Player";
      [8,0,0]],
     [
       [6,6,0],
-      [0,6,6],
+      [0,6,0],
       [0,6,0]],
     [
-    [7,7,0],
+    [7,7,7],
     [0,7,0],
-    [0,7,7]
+    [0,7,0]
     ],
     [[0,5,5],
      [0,5,0],
@@ -494,7 +494,7 @@ let currentPlayerName = "Player";
             }
         }
 
-        if (linhasLimpas >= 3) { 
+        if (linhasLimpas >= 2) { 
             if (!isEasterEggActive) { // Ativa apenas se não estiver ativo
                 isEasterEggActive = true;
                 currentFallSpeed = EASTER_EGG_FALL_SPEED; // Acelera o jogo
